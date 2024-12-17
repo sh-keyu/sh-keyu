@@ -23,7 +23,122 @@
 <link rel="preload" href="assets/fonts/material-icons/material-icons-outlined.woff2" as="font" type="font/woff2" crossorigin>
 
 </head>
+<style>
+    /* 触发弹窗图片的样式 */
+    #myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
 
+    #myImg:hover {
+        opacity: 0.7;
+    }
+
+    /* 弹窗背景 */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 10000;
+        /* Sit on top */
+        padding-top: 30px;
+        /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Black w/ opacity */
+        overflow-y: hidden;
+    }
+
+    /* 图片 */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        max-height: 96%;
+    }
+
+    /* 文本内容 */
+    #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+    }
+
+    /* 添加动画 */
+    .modal-content,
+    #caption {
+        -webkit-animation-name: zoom;
+        -webkit-animation-duration: 0.6s;
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @-webkit-keyframes zoom {
+        from {
+            -webkit-transform: scale(0)
+        }
+
+        to {
+            -webkit-transform: scale(1)
+        }
+    }
+
+    @keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    /* 关闭按钮 */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* 小屏幕中图片宽度为 100% */
+    @media only screen and (max-width: 700px) {
+        .modal-content {
+            width: 100%;
+        }
+    }
+    
+    .hide{
+    	display: none;
+    }
+</style>
 <body>
 
 	<main class="main">
@@ -225,7 +340,7 @@
 							<div class="ini">
 								<div class="ini-count">02</div>
 								<div class="ini-info">
-									<h3 class="ini-heading item-heading-large">24/7 全天候服务支持</h3>
+									<h3 class="ini-heading item-heading-large">全天候服务</h3>
 									<div class="ini-desc">
 										<p>您可以信赖我们的24/7技术支持，他们将很乐意解决您可能遇到的任何应用程序问题。</p>
 									</div>
@@ -258,7 +373,7 @@
 							<div class="ini">
 								<div class="ini-count">05</div>
 								<div class="ini-info">
-									<h3 class="ini-heading item-heading-large">创新与效率 <br> 同行</h3>
+									<h3 class="ini-heading item-heading-large">创新与效率 <br> </h3>
 									<div class="ini-desc">
 										<p>我们帮助您在激烈的市场竞争中脱颖而。您将获得高效、稳定、前瞻性的技术支持，助力您的业务腾飞。</p>
 									</div>
@@ -285,56 +400,71 @@
 					<div class="row items">
 						<div class="col-12">
 							<div class="section-heading heading-center">
-								<div class="section-subheading">最好的</div>
-								<h2>我们的客户</h2>
-								<p class="section-desc">我们的客户颠覆了行业，开辟了新市场，让无数人的生活变得更好。我们很荣幸能与数百家具有未来思维的企业合作，其中包括许多世界顶级的硬件、软件和消费品牌。</p>
+								<!--<div class="section-subheading">最好的</div>-->
+								<h2>资质和证书</h2>
+								<!--<p class="section-desc">我们的客户颠覆了行业，开辟了新市场，让无数人的生活变得更好。我们很荣幸能与数百家具有未来思维的企业合作，其中包括许多世界顶级的硬件、软件和消费品牌。</p>-->
 							</div> 
 						</div>
-						<!--<div class="col-lg-3 col-md-4 col-sm-4 col-6 item">
-							<div class="brands-item item-style">
-								<img data-src="assets/img/brands/circle.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-6 item"><!--col-lg-3 col-md-4 col-sm-4 col-6 item-->
+							<div onclick="showBigImg(this)" class="brands-item item-style">
+								<img data-src="assets/img/brands/高新技术证书.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
 							</div>
+							<p style="text-align: center;margin: 0 0 0 0;"><strong>高新技术企业</strong></p>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-4 col-6 item">
-							<div class="brands-item item-style">
-								<img data-src="assets/img/brands/codelab.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
+							<div onclick="showBigImg(this)" class="brands-item item-style img-zh hide">
+								<img data-src="assets/img/brands/质量管理.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
 							</div>
+							<div onclick="showBigImg(this)" class="brands-item item-style img-en hide">
+								<img data-src="assets/img/brands/质量管理-en.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+							</div>
+							<p style="text-align: center;margin: 0 0 0 0;"><strong>质量管理体系</strong></p>
+							<!--<iframe src="assets/img/brands/质量管理体系认证证书.pdf" height="500px;" width="500px"></iframe>-->
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-4 col-6 item">
-							<div class="brands-item item-style">
-								<img data-src="assets/img/brands/earth.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-6 item">
+							<div onclick="showBigImg(this)" class="brands-item item-style img-zh hide">
+								<img data-src="assets/img/brands/职业健康.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
 							</div>
+							<div onclick="showBigImg(this)" class="brands-item item-style img-en">
+								<img data-src="assets/img/brands/职业健康-en.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+							</div>
+							<p style="text-align: center;margin: 0 0 0 0;"><strong>职业健康安全管理体系</strong></p>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-4 col-6 item">
-							<div class="brands-item item-style">
-								<img data-src="assets/img/brands/hexa.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+						<div class="col-lg-6 col-md-4 col-sm-4 col-6 item">
+							<div onclick="showBigImg(this)" class="brands-item item-style img-zh hide">
+								<img data-src="assets/img/brands/环境管理.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
 							</div>
+							<div onclick="showBigImg(this)" class="brands-item item-style img-en">
+								<img data-src="assets/img/brands/环境管理-en.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+							</div>
+							<p style="text-align: center;margin: 0 0 0 0;"><strong>环境管理体系</strong></p>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-4 col-6 item">
-							<div class="brands-item item-style">
-								<img data-src="assets/img/brands/lightai.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+						<div class="col-lg-6 col-md-4 col-sm-4 col-6 item">
+							<div onclick="showBigImg(this)" class="brands-item item-style img-zh hide">
+								<img data-src="assets/img/brands/信息安全.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
 							</div>
+							<div onclick="showBigImg(this)" class="brands-item item-style img-en">
+								<img data-src="assets/img/brands/信息安全-en.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
+							</div>
+							<p style="text-align: center;margin: 0 0 0 0;"><strong>信息安全管理体系</strong></p>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-4 col-6 item">
-							<div class="brands-item item-style">
-								<img data-src="assets/img/brands/nirastate.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-sm-4 col-6 item">
-							<div class="brands-item item-style">
-								<img data-src="assets/img/brands/treva.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-4 col-sm-4 col-6 item">
-							<div class="brands-item item-style">
-								<img data-src="assets/img/brands/zootv.png" class="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="">
-							</div>
-						</div>-->
 					</div>
 				</div>
 			</section>
 
 		</div>
+		<!-- 弹窗 -->
+    <div id="myModal" class="modal">
+
+        <!-- 关闭按钮 -->
+        <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+
+        <!-- 弹窗内容 -->
+        <img class="modal-content" id="img01" src="">
+
+        <!-- 文本描述 -->
+        <div id="caption"></div>
+    </div>
 
 		<div class="bff">
     <div class="container">
@@ -420,4 +550,49 @@
 	<script src="assets/js/translate.js"></script>
 	<script src="assets/js/language.js"></script>
 </body>
+<script>
+    // 思路: 获取所有要用的 => 然后通过点击图片显示弹窗 => 赋值到弹窗里面 => 图片赋值 => 文本赋值
+    // 获取弹窗
+    var modal = document.getElementById('myModal');
+    // 弹窗图片
+    var contImg = document.getElementById('img01');
+    // 文本内容
+    var caption = document.getElementById('caption');
+
+    // 上面用图片alt图片也可以用图片赋值给弹窗内容 : 两种赋值文本方法
+    var txtSpan = document.getElementById('txtSpan');
+
+
+    // 点击x按钮关闭弹窗
+    var closeBox = document.getElementsByClassName('close')[0];
+    closeBox.onclick = function () {
+        modal.style.display = 'none';
+        document.documentElement.style.overflow = ''
+    }
+    
+    function showBigImg(ithis){
+    	modal.style.display = 'block';
+//  	console.log(ithis.firstElementChild.src);
+    	contImg.src = ithis.firstElementChild.src;
+    	caption.innerHTML = ithis.firstElementChild.alt;
+    	
+    	// 下面也可以直接获取页面内容赋值给弹窗内容 : 两种赋值文本方法
+        // caption.innerHTML = txtSpan.innerHTML
+    	document.documentElement.style.overflow = 'hidden'
+    }
+    
+    $(function(){
+    	var language = getCookie("Language");
+		switch (language) {
+			case "english":
+				$(".img-en").css("display","flex");
+				$(".img-zh").css("display","none");
+				break;
+			case "chinese_simplified":
+				$(".img-zh").css("display","flex");
+				$(".img-en").css("display","none");
+				break;
+		}
+    });
+</script>
 </html>

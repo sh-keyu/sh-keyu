@@ -33,7 +33,13 @@ $(function() {
 			console.log(el);
 		  	el.setAttribute('data-notranslate', 'true');
 		});*/
+		
+		if(language == "english"){
+			location.reload();
+		}
+		
 	});
+	
 });
 
 function getCookie(name) {
