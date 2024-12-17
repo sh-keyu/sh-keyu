@@ -2,6 +2,7 @@ translate.selectLanguageTag.show = false; //不出现的select的选择语言
 translate.service.use('client.edge'); //设置机器翻译服务通道
 translate.ignore.class.push('global_lang_btn');
 translate.ignore.id.push("no-lang");
+translate.nomenclature.append('chinese_simplified','english',`高新技术企业=High-tech enterprise`);
 //console.log(translate.ignore);
 translate.execute();
 
